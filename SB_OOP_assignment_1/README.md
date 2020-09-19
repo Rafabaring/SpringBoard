@@ -5,13 +5,13 @@ The idea behind this project is to exercise some of the OOP  techniques learned 
 
 
 ### Here you will find:
-* bank_assignment.py
+* **bank_assignment.py:**
 This is the main file, the one you should run. Here it contains all classess from this exercise and the imports needed to run the program
 
-* bank_custom_lib.py
+* **bank_custom_lib.py:**
 All the supporting functions that run outside classes can be found here. Special note is that the function simulating the database initialization lives here as bank_custom_lib
 
-* database.py
+* **database.py:**
 A simple txt file that simulates the database. When the program completes running, you should find a JSON format string with all informations from all tables. Here is an example:
 
 ```{"customer": [
