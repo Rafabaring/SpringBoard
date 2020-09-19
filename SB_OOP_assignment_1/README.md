@@ -4,7 +4,7 @@
 The idea behind this project is to exercise some of the OOP  techniques learned throughtout this course.
 
 
-###Here you will find:
+### Here you will find:
 * bank_assignment.py
 This is the main file, the one you should run. Here it contains all classess from this exercise and the imports needed to run the program
 
@@ -30,7 +30,7 @@ A simple txt file that simulates the database. When the program completes runnin
       {"id": 0, "customer_id": 2, "service_type": "loan"}
       ]}
 ```
-###How to run the program:
+### How to run the program:
 You can run using command line. Make sure you are in the current path and run the following command:
 > python bank_assignment.py
 
