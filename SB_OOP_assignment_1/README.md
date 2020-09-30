@@ -5,8 +5,14 @@ The idea behind this project is to exercise some of the OOP  techniques learned 
 
 
 ### Here you will find:
+* **bank_assignment_run.py:**
+This is the main file, the one you should run. It controls all interaction the user have with the system
+
+* **bank_assignment_console.py:**
+It contains all functions, used by 'bank_assignment_run.py', to call the system's class
+
 * **bank_assignment.py:**
-This is the main file, the one you should run. Here it contains all classess from this exercise and the imports needed to run the program
+This is the main file. Here it contains all classess from this exercise and the imports needed to run the program
 
 * **bank_custom_lib.py:**
 All the supporting functions that run outside classes can be found here. Special note is that the function simulating the database initialization lives here as bank_custom_lib
