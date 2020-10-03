@@ -1,5 +1,5 @@
 import json
-from bank_custom_lib import get_id
+from dbutils import get_id
 
 class Customer:
     """
@@ -34,19 +34,13 @@ class Customer:
             raise ValueError("You need an account to perform deposit of withdraw operations")
 
 
-    def account_operation(self, operation_type, account_to_operate,amount, mirror_database):
-        # Checking if the user has an account or not:
-        self._test_account_available(mirror_database)
-
-        # If account exist, perform operation
-        for account in mirror_database['account']:
-            if account["customer_id"] == self.id and account["account_type"] == account_to_operate:
-                if operation_type == "withdraw":
-                    self._test_fund_available(account["balance"], amount)
-                    account["balance"]  -= amount
-                elif operation_type == "deposit":
-                    account["balance"]  += amount
-        return mirror_database
+    def account_operation(self, operation_type, amount, payload_to_operate):
+        if operation_type == "withdraw":
+            self._test_fund_available(payload_to_operate["balance"], amount)
+            payload_to_operate["balance"]  -= amount
+        elif operation_type == "deposit":
+            payload_to_operate["balance"]  += amount
+        return payload_to_operate
 
 
     # A transfer is just a simple combination of withdrawing and adding funds to different accounts
@@ -80,7 +74,7 @@ class Account:
         self.id = id
         self.id_customer = Customer.id
         self.id_employee = Employee.id
-        self.account_type = account_type # checking or savings
+        self.account_type = account_type
         self.balance = balance
         self.payload = account_payload
 
@@ -139,7 +133,6 @@ class Service:
         self.payload = service_payload
 
 
-    def request_loan(self, Customer, amount, mirror_database):
-        Customer.account_operation("deposit", "checking", amount, mirror_database)
-        print("Congrats! Your loan was approved and the amount requested was deposited in your checking account\n")
-        return mirror_database
+
+    def request_loan(self, Customer, amount, payload_to_operate):
+        return Customer.account_operation("deposit", amount, payload_to_operate)
