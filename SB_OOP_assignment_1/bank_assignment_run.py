@@ -40,11 +40,47 @@ def main():
 
 
         if client_menu_input == "b":
-            # Create a new account
-            new_account = create_account_console(new_customer, emp_1)
+            # Handling the case the user is registered already
+            user_input_registration_flag, first_name, last_name = request_if_customer_is_registered()
 
-            # Update the database with the recently created account
-            mirror_database.update_partial_database('account', new_account.payload)
+            # Case the user IS registered
+            if user_input_registration_flag == 'y':
+                customer_verified = False
+                while customer_verified == False:
+                    customer_verified = mirror_database.verify_existing_user(first_name, last_name)
+                    if customer_verified == True:
+                        print("Great we were able to locate your records\n")
+                        # Instanciate a current client and use it to create an account
+                        current_client = Customer(first_name, last_name)
+                        new_account = create_account_console(current_client, emp_1)
+
+                        # Update the database
+                        mirror_database.update_partial_database('account', new_account.payload)
+
+                    else:
+                        print("Sorry, we were unable to find your records. Please try a different First and Last Name\n")
+                        user_input_registration_flag, first_name, last_name = request_if_customer_is_registered()
+                        if user_input_registration_flag == 'n':
+                            break
+
+
+
+
+
+            # Case the user IS NOT registered
+            elif user_input_registration_flag == 'n':
+                # Create a new customer
+                print("No worries, we will register you first\n")
+                new_customer = register_customer_console()
+
+                # Update the database with the recently created customer
+                mirror_database.update_partial_database('customer', new_customer.payload)
+
+                # Create a new account
+                new_account = create_account_console(new_customer, emp_1)
+
+                # Update the database with the recently created account
+                mirror_database.update_partial_database('account', new_account.payload)
 
 
 
@@ -90,6 +126,7 @@ def main():
                 else:
                     print("Cool! No worries :)")
 
+        # Program ends when the client is satisfied client_satisfied = 'y'
         client_satisfied = is_client_satisfied()
 
     # When the client is satisfied, they exit the while loop

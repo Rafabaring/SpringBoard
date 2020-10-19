@@ -11,7 +11,7 @@ class OutstandingDatabase:
         try:
             with open("database.txt", "w+") as database:
                 database_data = {}
-                database_data["customer"] = []
+                database_data["customer"] = [{"id": 0, "first_name": "Rafael", "last_name": "Baring"}] # initiate the database with some data in it
                 database_data["account"] = []
                 database_data["employee"] = []
                 database_data["service"] = []
@@ -30,10 +30,25 @@ class OutstandingDatabase:
         # Initially check if the payload exists in the table already
         table_id_list = [id['id'] for id in self.data[table_name]]
         if payload['id'] in table_id_list:
-            print("ACHOU DENTRO DE CASA")
             self.data[table_name][payload['id']] = payload
         else:
             self.data[table_name].append(payload)
+
+
+
+
+
+    def verify_existing_user(self, first_name, last_name):
+        for customer in self.data["customer"]:
+            if customer["first_name"] == first_name and customer["last_name"] == last_name:
+                customer_verified = True
+            else:
+                customer_verified = False
+        return customer_verified
+
+
+
+
 
 
     def get_client_to_operate(self,id, account_to_operate):
@@ -45,6 +60,9 @@ class OutstandingDatabase:
                 return None
 
 
+
+
+
     def update_database(self):
         """
         Append to the list simulating the effect of adding a new row to a table
@@ -53,6 +71,9 @@ class OutstandingDatabase:
             database.seek(0)
             json.dump(self.data, database)
             database.close()
+
+
+
 
 
 def get_id(table_name):

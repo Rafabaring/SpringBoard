@@ -44,6 +44,32 @@ def register_customer_console():
 
 
 
+def request_if_customer_is_registered():
+    """
+    description: Gets a the user credentials (First Name and Last Name)
+
+    parameter: none
+
+    return: A flag is the customer is registered or not and their input as first and last name
+    """
+    print("Are you a register customer already?\n")
+    user_input_registration_flag  = input_validation('y_n')
+    if user_input_registration_flag == 'y':
+        print("Please input your first Name\n")
+        first_name = input_validation('validate_string')
+
+        print("And now your last name\n")
+        last_name = input_validation('validate_string')
+
+    else:
+        first_name = 'na'
+        last_name = 'na'
+
+    return user_input_registration_flag, first_name, last_name
+
+
+
+
 
 def create_account_console(new_customer, employee):
     """
@@ -103,7 +129,7 @@ def service_or_loan_console(new_customer):
     new_service = Service(service_type, new_customer)
 
     print("Awesome, all set up\n")
-    
+
     return new_service
 
 
