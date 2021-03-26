@@ -1,0 +1,90 @@
+[debug] > Exec(early(addDefaultCommands), None, None)
+[debug] > Exec(addDefaultCommands, None, None)
+[debug] > Exec(early(initialize), None, None)
+[debug] > Exec(initialize, None, None)
+[debug] > Exec(boot, None, None)
+[debug] > Exec(writeSbtVersion, None, None)
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.4.6 (Oracle Corporation Java 1.8.0_271)
+[debug] Load.defaultLoad until apply took 564.072581ms
+[debug]           Load.loadUnit: plugins took 96.804111ms
+[debug]           Load.loadUnit: defsScala took 0.48762ms
+[debug] [Loading] Scanning directory /Users/rafaelbaring/Documents/RedMug/project
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in /Users/rafaelbaring/Documents/RedMug/project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(List(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin))), Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 29.532218 ms
+[debug]               Load.resolveProject(redmug-build) took 54.53868ms
+[debug]             Load.loadTransitive: finalizeProject(Project(id redmug-build, base: /Users/rafaelbaring/Documents/RedMug/project, plugins: List(<none>))) took 219.008251ms
+[debug] [Loading] Done in /Users/rafaelbaring/Documents/RedMug/project, returning: (redmug-build)
+[debug]           Load.loadUnit: loadedProjectsRaw took 244.144445ms
+[debug]           Load.loadUnit: cleanEvalClasses took 0.388531ms
+[debug]         Load.loadUnit(file:/Users/rafaelbaring/Documents/RedMug/project/, ...) took 349.210663ms
+[debug]       Load.apply: load took 703.355021ms
+[debug]       Load.apply: resolveProjects took 6.621447ms
+[debug]       Load.apply: finalTransforms took 56.081562ms
+[debug]       Load.apply: config.delegates took 7.561345ms
+[debug]       Load.apply: Def.make(settings)... took 387.95367ms
+[debug]       Load.apply: structureIndex took 85.201671ms
+[debug]       Load.apply: mkStreams took 1.867408ms
+[info] loading project definition from /Users/rafaelbaring/Documents/RedMug/project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]     Load.loadUnit: plugins took 2078.041156ms
+[debug]     Load.loadUnit: defsScala took 0.006927ms
+[debug] [Loading] Scanning directory /Users/rafaelbaring/Documents/RedMug
+[debug]       Load.loadUnit: mkEval took 7.785372ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in /Users/rafaelbaring/Documents/RedMug, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(List(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin))), Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin))), Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin))), Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin))), Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 2.618182 ms
+[info] loading settings for project redmug from build.sbt ...
+[debug]         Load.resolveProject(redmug) took 3.147477ms
+[debug]       Load.loadTransitive: finalizeProject(Project(id redmug, base: /Users/rafaelbaring/Documents/RedMug, plugins: List(<none>))) took 6.387007ms
+[debug] [Loading] Done in /Users/rafaelbaring/Documents/RedMug, returning: (redmug)
+[debug]     Load.loadUnit: loadedProjectsRaw took 154.414077ms
+[debug]     Load.loadUnit: cleanEvalClasses took 9.203125ms
+[debug]   Load.loadUnit(file:/Users/rafaelbaring/Documents/RedMug/, ...) took 2243.102815ms
+[debug] Load.apply: load took 2267.544084ms
+[debug] Load.apply: resolveProjects took 0.140326ms
+[debug] Load.apply: finalTransforms took 11.091049ms
+[debug] Load.apply: config.delegates took 0.423094ms
+[debug] Load.apply: Def.make(settings)... took 123.38969ms
+[debug] Load.apply: structureIndex took 24.734928ms
+[debug] Load.apply: mkStreams took 0.002151ms
+[info] set current project to KafkaProducerConsumerSbt (in build file:/Users/rafaelbaring/Documents/RedMug/)
+[debug] > Exec(sbtPopOnFailure, None, None)
+[debug] > Exec(resumeFromFailure, None, None)
+[debug] > Exec(notifyUsersAboutShell, None, None)
+[debug] > Exec(iflast shell, None, None)
+[debug] > Exec(run, None, None)
+[debug] Evaluating tasks: Compile / run
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 6 Scala sources to /Users/rafaelbaring/Documents/RedMug/target/scala-2.11/classes ...
+[info] Non-compiled module 'compiler-bridge_2.11' for Scala 2.11.8. Compiling...
+[info]   Compilation completed in 8.422s.
+[warn] /Users/rafaelbaring/Documents/RedMug/src/main/scala/red/mug/KafkaConsumer.scala:5:42: imported `KafkaConsumer' is permanently hidden by definition of object KafkaConsumer in package mug
+[warn] import org.apache.kafka.clients.consumer.KafkaConsumer
+[warn]                                          ^
+[warn] /Users/rafaelbaring/Documents/RedMug/src/main/scala/red/mug/KafkaProducer.scala:4:43: imported `KafkaProducer' is permanently hidden by definition of object KafkaProducer in package mug
+[warn] import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
+[warn]                                           ^
+[warn] /Users/rafaelbaring/Documents/RedMug/src/main/scala/red/mug/KafkaProducerConsumer.scala:5:43: imported `KafkaProducer' is permanently hidden by definition of object KafkaProducer in package mug
+[warn] import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
+[warn]                                           ^
+[warn] /Users/rafaelbaring/Documents/RedMug/src/main/scala/red/mug/KafkaProducerConsumer.scala:7:42: imported `KafkaConsumer' is permanently hidden by definition of object KafkaConsumer in package mug
+[warn] import org.apache.kafka.clients.consumer.KafkaConsumer
+[warn]                                          ^
+[warn] /Users/rafaelbaring/Documents/RedMug/src/main/scala/red/mug/KafkaProducerConsumerSbt.scala:6:42: imported `KafkaConsumer' is permanently hidden by definition of object KafkaConsumer in package mug
+[warn] import org.apache.kafka.clients.consumer.KafkaConsumer
+[warn]                                          ^
+[warn] /Users/rafaelbaring/Documents/RedMug/src/main/scala/red/mug/KafkaProducerConsumerSbt.scala:7:43: imported `KafkaProducer' is permanently hidden by definition of object KafkaProducer in package mug
+[warn] import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
+[warn]                                           ^
+[warn] there were two deprecation warnings; re-run with -deprecation for details
+[warn] 7 warnings found
+[info] done compiling
