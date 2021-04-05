@@ -1,0 +1,19 @@
+version: '3'
+services:
+  generator:
+    build: ./generator
+    environment:
+      KAFKA_BROKER_URL: 'broker:9092'
+      TRANSACTIONS_TOPIC: queueing.transactions
+      TRANSACTIONS_PER_SECOND: 100
+  detector:
+    build: ./fraud_detector
+    environment:
+      KAFKA_BROKER_URL: 'broker:9092'
+      TRANSACTIONS_TOPIC: queueing.transactions
+      LEGIT_TOPIC: streaming.transactions.legit
+      FRAUD_TOPIC: streaming.transactions.fraud
+# networks:
+#   default:
+#     external:
+#       name: kafka-network
