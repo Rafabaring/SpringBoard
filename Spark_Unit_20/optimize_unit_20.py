@@ -23,8 +23,8 @@ project_path = ('/').join(base_path.split('/')[0:-3])
 # answers_input_path = os.path.join(project_path, 'data/answers')
 # questions_input_path = os.path.join(project_path, 'output/questions-transformed')
 
-answers_input_path = '/Users/rafaelbaring/Documents/SpringBoard/Spark_Unit_20/data/answers'
-questions_input_path = '/Users/rafaelbaring/Documents/SpringBoard/Spark_Unit_20/data/questions'
+answers_input_path = '/Users/rafaelbaring/Documents/GitHub/SpringBoard/Spark_Unit_20/data/answers'
+questions_input_path = '/Users/rafaelbaring/Documents/GitHub/SpringBoard/Spark_Unit_20/data/questions'
 
 answersDF = spark.read.option('path', answers_input_path).load()
 questionsDF = spark.read.option('path', questions_input_path).load()
@@ -48,21 +48,8 @@ Task:
 
 see the query plan of the previous result and rewrite the query to optimize it
 '''
-# Steps to optimize the query:
-# Rewritting to use RDD
-# Rewritting to apply *ByKey operators - this will impact the number of shuffles in the query
-# Fine tunning the number of partitions
-# Executing the requested data with less data structured involved
-sc = SparkContext.getOrCreate()
-
-# Selecting the data needed for this exercise
-filter_values = answersDF.withColumn('month', month('creation_date')).select('month', 'question_id')
-
-# Creating the RDD
-filter_values_rdd = filter_values.rdd.map(tuple)
-
-# Reducing to the value requested in the exercise. Also selecting the number of partitions
-filter_values_results = filter_values_rdd.map(lambda x: (x,1)).reduceByKey(lambda a, b: a+b, numPartitions = 4)
-
-# Calling the action once to minimize computational effort
-print(filter_values_results.take(10))
+# Adding repartition eliminates one shuffle
+# Running on repartitions to optimize the number of parallelization
+answers_month = answersDF.repartition('question_id').withColumn('month', month('creation_date')).groupBy('question_id', 'month').agg(count('*').alias('cnt'))
+resultDF = questionsDF.join(answers_month, 'question_id').select('question_id', 'creation_date', 'title', 'month', 'cnt')
+resultDF.orderBy('question_id', 'month').show()
