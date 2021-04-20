@@ -4,7 +4,7 @@ from pyspark import SparkConf, SparkContext
 conf = SparkConf().setMaster("local").setAppName("optimize_post_sale")
 sc = SparkContext(conf = conf)
 
-path_to_data = '/Users/rafaelbaring/Documents/SpringBoard/Spark_Unit_20/data.csv'
+path_to_data = '/Users/rafaelbaring/Documents/GitHub/SpringBoard/Spark_Unit_20/data.csv'
 lines = sc.textFile(path_to_data)
 
 # Parse the lines coming from the raw data
@@ -26,15 +26,12 @@ def analyze_make_model(list):
     Check if an accidente happened for a specific VIN and assign the make and year values
     for that VIN
     '''
-    for i in list[0]:
-        # Checking if an accident occured
-        if i == 'A':
-            # Make and year is inside the first list of the value. The count is in the second
-            make = list[0][1]
-            year = list[0][2]
-            count = int(list[1])
-            # Build the returning object following the requirements
-            return (make + " - " + year, count)
+    make = list[0][1]
+    count = 0
+    if 'A' in list[0]:
+        count = 1
+    return (make, count)
+
 
 
 # Starting the spark transformation
@@ -45,7 +42,6 @@ rdd_unique_vin = rdd.mapValues(lambda x: (x,1)).reduceByKey(lambda x, y: (x[0] +
 
 # Extrapolating make and year to accidente level data
 rdd_clean = rdd_unique_vin.mapValues(lambda x: analyze_make_model(x)).values().collect()
-# rdd_clean = rdd_clean
 
 # Creating a new RDD only with records that have an accidents. Records without accident will be explicit as None
 clean_list = [clean_value for clean_value in rdd_clean if clean_value != None]
