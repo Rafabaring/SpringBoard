@@ -19,7 +19,7 @@ if __name__ == '__main__':
     while True:
         transaction = create_random_transaction()
         message = json.dumps(transaction)
-        producer.send(TRANSACTIONS_TOPIC, value=transacztion)
+        producer.send(TRANSACTIONS_TOPIC, value=transaction)
         print("TESTING")  # DEBUG
         print(transaction)  # DEBUG
         sleep(SLEEP_TIME)
