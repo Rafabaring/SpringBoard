@@ -1,0 +1,138 @@
+MacBook-Pro-de-Baring:Kafka-docker rafaelbaring$ docker-compose up
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+Unsupported config option for services.zookeeper: 'broker'
+MacBook-Pro-de-Baring:Kafka-docker rafaelbaring$ docker-compose up
+Docker Compose is now in the Docker CLI, try `docker compose up`
+
+Creating network "kafka-docker_default" with the default driver
+Pulling zookeeper (confluentinc/cp-zookeeper:latest)...
+latest: Pulling from confluentinc/cp-zookeeper
+a591faa84ab0: Pull complete
+76b9354adec6: Pull complete
+6b3439ed91d1: Pull complete
+3982704de0ba: Pull complete
+da427b0480a6: Pull complete
+c2e6fb0cc202: Pull complete
+a5c791180795: Pull complete
+3953961f55cd: Pull complete
+88e2b748c77f: Pull complete
+d85cf27468bf: Pull complete
+Digest: sha256:9a6bb5521a286df4686ee2e0b0517a12610c88ee0e14cc807c981428ed009a99
+Status: Downloaded newer image for confluentinc/cp-zookeeper:latest
+Pulling broker (confluentinc/cp-kafka:latest)...
+latest: Pulling from confluentinc/cp-kafka
+a591faa84ab0: Already exists
+76b9354adec6: Already exists
+6b3439ed91d1: Already exists
+3982704de0ba: Already exists
+da427b0480a6: Already exists
+c2e6fb0cc202: Already exists
+a5c791180795: Already exists
+3953961f55cd: Already exists
+41037331834d: Pull complete
+56bf33be5126: Pull complete
+Digest: sha256:24a9617751b6e8a5022f80fea093245b9520506ee22994c901c239a4825b9e14
+Status: Downloaded newer image for confluentinc/cp-kafka:latest
+Creating kafka-docker_zookeeper_1 ... done
+Creating kafka-docker_broker_1    ... done
+Attaching to kafka-docker_zookeeper_1, kafka-docker_broker_1
+broker_1     | ===> User
+broker_1     | uid=1000(appuser) gid=1000(appuser) groups=1000(appuser)
+zookeeper_1  | ===> User
+zookeeper_1  | uid=1000(appuser) gid=1000(appuser) groups=1000(appuser)
+zookeeper_1  | ===> Configuring ...
+broker_1     | ===> Configuring ...
+zookeeper_1  | ===> Running preflight checks ...
+zookeeper_1  | ===> Check if /var/lib/zookeeper/data is writable ...
+zookeeper_1  | ===> Check if /var/lib/zookeeper/log is writable ...
+zookeeper_1  | ===> Launching ...
+zookeeper_1  | ===> Launching zookeeper ...
+zookeeper_1  | [2021-04-21 01:02:21,252] INFO Reading configuration from: /etc/kafka/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+zookeeper_1  | [2021-04-21 01:02:21,286] INFO clientPortAddress is 0.0.0.0:2181 (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+zookeeper_1  | [2021-04-21 01:02:21,288] INFO secureClientPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+zookeeper_1  | [2021-04-21 01:02:21,294] INFO autopurge.snapRetainCount set to 3 (org.apache.zookeeper.server.DatadirCleanupManager)
+zookeeper_1  | [2021-04-21 01:02:21,294] INFO autopurge.purgeInterval set to 0 (org.apache.zookeeper.server.DatadirCleanupManager)
+zookeeper_1  | [2021-04-21 01:02:21,295] INFO Purge task is not scheduled. (org.apache.zookeeper.server.DatadirCleanupManager)
+zookeeper_1  | [2021-04-21 01:02:21,295] WARN Either no config or no quorum defined in config, running  in standalone mode (org.apache.zookeeper.server.quorum.QuorumPeerMain)
+zookeeper_1  | [2021-04-21 01:02:21,311] INFO Log4j 1.2 jmx support found and enabled. (org.apache.zookeeper.jmx.ManagedUtil)
+zookeeper_1  | [2021-04-21 01:02:21,339] INFO Reading configuration from: /etc/kafka/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+zookeeper_1  | [2021-04-21 01:02:21,340] INFO clientPortAddress is 0.0.0.0:2181 (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+zookeeper_1  | [2021-04-21 01:02:21,340] INFO secureClientPort is not set (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
+zookeeper_1  | [2021-04-21 01:02:21,341] INFO Starting server (org.apache.zookeeper.server.ZooKeeperServerMain)
+zookeeper_1  | [2021-04-21 01:02:21,345] INFO zookeeper.snapshot.trust.empty : false (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+zookeeper_1  | [2021-04-21 01:02:21,388] INFO Server environment:zookeeper.version=3.5.9-83df9301aa5c2a5d284a9940177808c01bc35cef, built on 01/06/2021 20:03 GMT (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,388] INFO Server environment:host.name=4a2c8cdefa43 (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,388] INFO Server environment:java.version=11.0.10 (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,389] INFO Server environment:java.vendor=Azul Systems, Inc. (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,389] INFO Server environment:java.home=/usr/lib/jvm/zulu11-ca (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,389] INFO Server environment:java.class.path=/usr/bin/../share/java/kafka/argparse4j-0.7.0.jar:/usr/bin/../share/java/kafka/kafka_2.13-6.1.1-ccs-test.jar:/usr/bin/../share/java/kafka/jackson-datatype-jdk8-2.10.5.jar:/usr/bin/../share/java/kafka/jakarta.xml.bind-api-2.3.2.jar:/usr/bin/../share/java/kafka/snappy-java-1.1.7.7.jar:/usr/bin/../share/java/kafka/jackson-annotations-2.10.5.jar:/usr/bin/../share/java/kafka/connect-mirror-client-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/jetty-security-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/jersey-common-2.31.jar:/usr/bin/../share/java/kafka/hk2-locator-2.6.1.jar:/usr/bin/../share/java/kafka/netty-buffer-4.1.59.Final.jar:/usr/bin/../share/java/kafka/zookeeper-3.5.9.jar:/usr/bin/../share/java/kafka/kafka-streams-test-utils-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/osgi-resource-locator-1.0.3.jar:/usr/bin/../share/java/kafka/netty-common-4.1.59.Final.jar:/usr/bin/../share/java/kafka/netty-resolver-4.1.59.Final.jar:/usr/bin/../share/java/kafka/connect-api-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/zstd-jni-1.4.5-6.jar:/usr/bin/../share/java/kafka/jetty-io-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/jersey-container-servlet-core-2.31.jar:/usr/bin/../share/java/kafka/netty-transport-native-unix-common-4.1.59.Final.jar:/usr/bin/../share/java/kafka/kafka-streams-scala_2.13-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/jopt-simple-5.0.4.jar:/usr/bin/../share/java/kafka/jackson-module-scala_2.13-2.10.5.jar:/usr/bin/../share/java/kafka/scala-reflect-2.13.3.jar:/usr/bin/../share/java/kafka/jetty-continuation-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/kafka_2.13-6.1.1-ccs-sources.jar:/usr/bin/../share/java/kafka/jakarta.inject-2.6.1.jar:/usr/bin/../share/java/kafka/kafka_2.13-6.1.1-ccs-test-sources.jar:/usr/bin/../share/java/kafka/kafka-streams-examples-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/commons-cli-1.4.jar:/usr/bin/../share/java/kafka/plexus-utils-3.2.1.jar:/usr/bin/../share/java/kafka/slf4j-api-1.7.30.jar:/usr/bin/../share/java/kafka/jersey-container-servlet-2.31.jar:/usr/bin/../share/java/kafka/zookeeper-jute-3.5.9.jar:/usr/bin/../share/java/kafka/jersey-hk2-2.31.jar:/usr/bin/../share/java/kafka/netty-transport-native-epoll-4.1.59.Final.jar:/usr/bin/../share/java/kafka/scala-logging_2.13-3.9.2.jar:/usr/bin/../share/java/kafka/audience-annotations-0.5.0.jar:/usr/bin/../share/java/kafka/confluent-log4j-1.2.17-cp2.jar:/usr/bin/../share/java/kafka/jackson-jaxrs-json-provider-2.10.5.jar:/usr/bin/../share/java/kafka/kafka_2.13-6.1.1-ccs-javadoc.jar:/usr/bin/../share/java/kafka/jersey-server-2.31.jar:/usr/bin/../share/java/kafka/netty-transport-4.1.59.Final.jar:/usr/bin/../share/java/kafka/scala-library-2.13.3.jar:/usr/bin/../share/java/kafka/hk2-utils-2.6.1.jar:/usr/bin/../share/java/kafka/scala-java8-compat_2.13-0.9.1.jar:/usr/bin/../share/java/kafka/connect-json-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/netty-codec-4.1.59.Final.jar:/usr/bin/../share/java/kafka/jackson-core-2.10.5.jar:/usr/bin/../share/java/kafka/jakarta.ws.rs-api-2.1.6.jar:/usr/bin/../share/java/kafka/aopalliance-repackaged-2.6.1.jar:/usr/bin/../share/java/kafka/jackson-dataformat-csv-2.10.5.jar:/usr/bin/../share/java/kafka/connect-file-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/commons-lang3-3.8.1.jar:/usr/bin/../share/java/kafka/jackson-module-paranamer-2.10.5.jar:/usr/bin/../share/java/kafka/javassist-3.25.0-GA.jar:/usr/bin/../share/java/kafka/jetty-servlet-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/paranamer-2.8.jar:/usr/bin/../share/java/kafka/kafka-log4j-appender-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/kafka-tools-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/rocksdbjni-5.18.4.jar:/usr/bin/../share/java/kafka/jackson-module-jaxb-annotations-2.10.5.jar:/usr/bin/../share/java/kafka/kafka-clients-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/lz4-java-1.7.1.jar:/usr/bin/../share/java/kafka/jackson-jaxrs-base-2.10.5.jar:/usr/bin/../share/java/kafka/connect-mirror-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/jaxb-api-2.3.0.jar:/usr/bin/../share/java/kafka/jakarta.activation-api-1.2.1.jar:/usr/bin/../share/java/kafka/kafka-raft-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/jersey-media-jaxb-2.31.jar:/usr/bin/../share/java/kafka/jakarta.validation-api-2.0.2.jar:/usr/bin/../share/java/kafka/netty-handler-4.1.59.Final.jar:/usr/bin/../share/java/kafka/metrics-core-2.2.0.jar:/usr/bin/../share/java/kafka/scala-collection-compat_2.13-2.2.0.jar:/usr/bin/../share/java/kafka/connect-transforms-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/jetty-server-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/connect-runtime-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/hk2-api-2.6.1.jar:/usr/bin/../share/java/kafka/connect-basic-auth-extension-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/jetty-servlets-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/jakarta.annotation-api-1.3.5.jar:/usr/bin/../share/java/kafka/maven-artifact-3.6.3.jar:/usr/bin/../share/java/kafka/reflections-0.9.12.jar:/usr/bin/../share/java/kafka/kafka.jar:/usr/bin/../share/java/kafka/javax.ws.rs-api-2.1.1.jar:/usr/bin/../share/java/kafka/kafka-streams-6.1.1-ccs.jar:/usr/bin/../share/java/kafka/javax.servlet-api-3.1.0.jar:/usr/bin/../share/java/kafka/jetty-util-ajax-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/activation-1.1.1.jar:/usr/bin/../share/java/kafka/javassist-3.26.0-GA.jar:/usr/bin/../share/java/kafka/jetty-http-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/jersey-client-2.31.jar:/usr/bin/../share/java/kafka/jackson-databind-2.10.5.1.jar:/usr/bin/../share/java/kafka/jetty-util-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/jetty-client-9.4.38.v20210224.jar:/usr/bin/../share/java/kafka/slf4j-log4j12-1.7.30.jar:/usr/bin/../share/java/kafka/kafka_2.13-6.1.1-ccs.jar:/usr/bin/../share/java/confluent-telemetry/* (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,390] INFO Server environment:java.library.path=/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,390] INFO Server environment:java.io.tmpdir=/tmp (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,390] INFO Server environment:java.compiler=<NA> (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,391] INFO Server environment:os.name=Linux (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,391] INFO Server environment:os.arch=amd64 (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,391] INFO Server environment:os.version=5.10.25-linuxkit (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,391] INFO Server environment:user.name=appuser (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,391] INFO Server environment:user.home=/home/appuser (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,391] INFO Server environment:user.dir=/home/appuser (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,392] INFO Server environment:os.memory.free=496MB (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,392] INFO Server environment:os.memory.max=512MB (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,392] INFO Server environment:os.memory.total=512MB (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,399] INFO minSessionTimeout set to 4000 (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,400] INFO maxSessionTimeout set to 40000 (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,403] INFO Created server with tickTime 2000 minSessionTimeout 4000 maxSessionTimeout 40000 datadir /var/lib/zookeeper/log/version-2 snapdir /var/lib/zookeeper/data/version-2 (org.apache.zookeeper.server.ZooKeeperServer)
+zookeeper_1  | [2021-04-21 01:02:21,485] INFO Logging initialized @1381ms to org.eclipse.jetty.util.log.Slf4jLog (org.eclipse.jetty.util.log)
+zookeeper_1  | [2021-04-21 01:02:21,725] WARN o.e.j.s.ServletContextHandler@2a693f59{/,null,STOPPED} contextPath ends with /* (org.eclipse.jetty.server.handler.ContextHandler)
+zookeeper_1  | [2021-04-21 01:02:21,733] WARN Empty contextPath (org.eclipse.jetty.server.handler.ContextHandler)
+zookeeper_1  | [2021-04-21 01:02:21,812] INFO jetty-9.4.38.v20210224; built: 2021-02-24T20:25:07.675Z; git: 288f3cc74549e8a913bf363250b0744f2695b8e6; jvm 11.0.10+9-LTS (org.eclipse.jetty.server.Server)
+zookeeper_1  | [2021-04-21 01:02:21,929] INFO DefaultSessionIdManager workerName=node0 (org.eclipse.jetty.server.session)
+zookeeper_1  | [2021-04-21 01:02:21,930] INFO No SessionScavenger set, using defaults (org.eclipse.jetty.server.session)
+zookeeper_1  | [2021-04-21 01:02:21,942] INFO node0 Scavenging every 660000ms (org.eclipse.jetty.server.session)
+zookeeper_1  | [2021-04-21 01:02:21,957] WARN ServletContext@o.e.j.s.ServletContextHandler@2a693f59{/,null,STARTING} has uncovered http methods for path: /* (org.eclipse.jetty.security.SecurityHandler)
+zookeeper_1  | [2021-04-21 01:02:21,988] INFO Started o.e.j.s.ServletContextHandler@2a693f59{/,null,AVAILABLE} (org.eclipse.jetty.server.handler.ContextHandler)
+zookeeper_1  | [2021-04-21 01:02:22,027] INFO Started ServerConnector@7526515b{HTTP/1.1, (http/1.1)}{0.0.0.0:8080} (org.eclipse.jetty.server.AbstractConnector)
+zookeeper_1  | [2021-04-21 01:02:22,032] INFO Started @1929ms (org.eclipse.jetty.server.Server)
+zookeeper_1  | [2021-04-21 01:02:22,033] INFO Started AdminServer on address 0.0.0.0, port 8080 and command URL /commands (org.apache.zookeeper.server.admin.JettyAdminServer)
+zookeeper_1  | [2021-04-21 01:02:22,041] INFO Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory (org.apache.zookeeper.server.ServerCnxnFactory)
+zookeeper_1  | [2021-04-21 01:02:22,058] INFO Configuring NIO connection handler with 10s sessionless connection timeout, 1 selector thread(s), 4 worker threads, and 64 kB direct buffers. (org.apache.zookeeper.server.NIOServerCnxnFactory)
+zookeeper_1  | [2021-04-21 01:02:22,060] INFO binding to port 0.0.0.0/0.0.0.0:2181 (org.apache.zookeeper.server.NIOServerCnxnFactory)
+zookeeper_1  | [2021-04-21 01:02:22,095] INFO zookeeper.snapshotSizeFactor = 0.33 (org.apache.zookeeper.server.ZKDatabase)
+zookeeper_1  | [2021-04-21 01:02:22,099] INFO Snapshotting: 0x0 to /var/lib/zookeeper/data/version-2/snapshot.0 (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+zookeeper_1  | [2021-04-21 01:02:22,109] INFO Snapshotting: 0x0 to /var/lib/zookeeper/data/version-2/snapshot.0 (org.apache.zookeeper.server.persistence.FileTxnSnapLog)
+zookeeper_1  | [2021-04-21 01:02:22,132] INFO PrepRequestProcessor (sid:0) started, reconfigEnabled=false (org.apache.zookeeper.server.PrepRequestProcessor)
+zookeeper_1  | [2021-04-21 01:02:22,135] INFO Using checkIntervalMs=60000 maxPerMinute=10000 (org.apache.zookeeper.server.ContainerManager)
+broker_1     | ===> Running preflight checks ...
+broker_1     | ===> Check if /var/lib/kafka/data is writable ...
+broker_1     | ===> Check if Zookeeper is healthy ...
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:zookeeper.version=3.5.8-f439ca583e70862c3068a1f2a7d4d068eec33315, built on 05/04/2020 15:53 GMT
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:host.name=28d35c03af5c
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:java.version=11.0.10
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:java.vendor=Azul Systems, Inc.
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:java.home=/usr/lib/jvm/zulu11-ca
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:java.class.path=/usr/share/java/cp-base-new/utility-belt-6.1.1.jar:/usr/share/java/cp-base-new/argparse4j-0.7.0.jar:/usr/share/java/cp-base-new/jackson-datatype-jdk8-2.10.5.jar:/usr/share/java/cp-base-new/snappy-java-1.1.7.7.jar:/usr/share/java/cp-base-new/jackson-annotations-2.10.5.jar:/usr/share/java/cp-base-new/zookeeper-jute-3.5.8.jar:/usr/share/java/cp-base-new/gson-2.8.6.jar:/usr/share/java/cp-base-new/zstd-jni-1.4.5-6.jar:/usr/share/java/cp-base-new/netty-codec-4.1.48.Final.jar:/usr/share/java/cp-base-new/jopt-simple-5.0.4.jar:/usr/share/java/cp-base-new/jackson-module-scala_2.13-2.10.5.jar:/usr/share/java/cp-base-new/scala-reflect-2.13.3.jar:/usr/share/java/cp-base-new/netty-common-4.1.48.Final.jar:/usr/share/java/cp-base-new/commons-cli-1.4.jar:/usr/share/java/cp-base-new/slf4j-api-1.7.30.jar:/usr/share/java/cp-base-new/scala-logging_2.13-3.9.2.jar:/usr/share/java/cp-base-new/audience-annotations-0.5.0.jar:/usr/share/java/cp-base-new/netty-buffer-4.1.48.Final.jar:/usr/share/java/cp-base-new/scala-library-2.13.3.jar:/usr/share/java/cp-base-new/netty-handler-4.1.48.Final.jar:/usr/share/java/cp-base-new/scala-java8-compat_2.13-0.9.1.jar:/usr/share/java/cp-base-new/jackson-core-2.10.5.jar:/usr/share/java/cp-base-new/slf4j-simple-1.7.30.jar:/usr/share/java/cp-base-new/jackson-dataformat-csv-2.10.5.jar:/usr/share/java/cp-base-new/common-utils-6.1.1.jar:/usr/share/java/cp-base-new/jackson-module-paranamer-2.10.5.jar:/usr/share/java/cp-base-new/paranamer-2.8.jar:/usr/share/java/cp-base-new/kafka-clients-6.1.1-ccs.jar:/usr/share/java/cp-base-new/netty-resolver-4.1.48.Final.jar:/usr/share/java/cp-base-new/lz4-java-1.7.1.jar:/usr/share/java/cp-base-new/snakeyaml-1.26.jar:/usr/share/java/cp-base-new/kafka-raft-6.1.1-ccs.jar:/usr/share/java/cp-base-new/metrics-core-2.2.0.jar:/usr/share/java/cp-base-new/scala-collection-compat_2.13-2.2.0.jar:/usr/share/java/cp-base-new/netty-transport-4.1.48.Final.jar:/usr/share/java/cp-base-new/netty-transport-native-epoll-4.1.48.Final.jar:/usr/share/java/cp-base-new/jackson-dataformat-yaml-2.10.5.jar:/usr/share/java/cp-base-new/jackson-databind-2.10.5.1.jar:/usr/share/java/cp-base-new/netty-transport-native-unix-common-4.1.48.Final.jar:/usr/share/java/cp-base-new/zookeeper-3.5.8.jar:/usr/share/java/cp-base-new/kafka_2.13-6.1.1-ccs.jar
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:java.library.path=/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:java.io.tmpdir=/tmp
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:java.compiler=<NA>
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:os.name=Linux
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:os.arch=amd64
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:os.version=5.10.25-linuxkit
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:user.name=appuser
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:user.home=/home/appuser
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:user.dir=/home/appuser
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:os.memory.free=26MB
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:os.memory.max=498MB
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Client environment:os.memory.total=32MB
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Initiating client connection, connectString=zookeeper:2181 sessionTimeout=40000 watcher=io.confluent.admin.utils.ZookeeperConnectionWatcher@3b084709
+broker_1     | [main] INFO org.apache.zookeeper.common.X509Util - Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+broker_1     | [main] INFO org.apache.zookeeper.ClientCnxnSocket - jute.maxbuffer value is 4194304 Bytes
+broker_1     | [main] INFO org.apache.zookeeper.ClientCnxn - zookeeper.request.timeout value is 0. feature enabled=
+broker_1     | [main-SendThread(zookeeper:2181)] INFO org.apache.zookeeper.ClientCnxn - Opening socket connection to server zookeeper/172.18.0.2:2181. Will not attempt to authenticate using SASL (unknown error)
+broker_1     | [main-SendThread(zookeeper:2181)] INFO org.apache.zookeeper.ClientCnxn - Socket connection established, initiating session, client: /172.18.0.3:50712, server: zookeeper/172.18.0.2:2181
+zookeeper_1  | [2021-04-21 01:02:23,435] INFO Creating new log file: log.1 (org.apache.zookeeper.server.persistence.FileTxnLog)
+broker_1     | [main-SendThread(zookeeper:2181)] INFO org.apache.zookeeper.ClientCnxn - Session establishment complete on server zookeeper/172.18.0.2:2181, sessionid = 0x10000028c940000, negotiated timeout = 40000
+broker_1     | [main] INFO org.apache.zookeeper.ZooKeeper - Session: 0x10000028c940000 closed
+broker_1     | [main-EventThread] INFO org.apache.zookeeper.ClientCnxn - EventThread shut down for session: 0x10000028c940000
+broker_1     | ===> Launching ...
+broker_1     | ===> Launching kafka ...
+broker_1     | [2021-04-21 01:02:24,408] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
+b

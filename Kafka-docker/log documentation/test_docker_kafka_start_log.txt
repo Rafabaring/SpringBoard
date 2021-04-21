@@ -1,0 +1,2 @@
+MacBook-Pro-de-Baring:Kafka-docker rafaelbaring$ docker-compose logs -f broker | grep started
+broker_1     | [2021-04-21 01:02:27,335] INFO [KafkaServer id=1] started (kafka.server.KafkaServer)

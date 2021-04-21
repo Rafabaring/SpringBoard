@@ -1,0 +1,2 @@
+MacBook-Pro-de-Baring:Kafka-docker rafaelbaring$ docker network create kafka-network
+c100cd94eacfda3d7657a1c8294db830767fb278a2ce1bd5e2274823c5cc1302
