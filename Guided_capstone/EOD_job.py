@@ -2,9 +2,9 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType, 
 from pyspark.sql import SQLContext
 from pyspark.sql.functions import col, max as max_
 
-import parse_source_data as psd
-rdd_join = psd.rdd_join
-sqlContext = SQLContext(sc)
+import load_data
+rdd_join = load_data.rdd_join
+sqlContext = SQLContext(load_data.sc)
 schema = StructType([
     StructField("trade_dt",StringType(),True),
     StructField("rec_type",StringType(),True),
@@ -20,7 +20,6 @@ schema = StructType([
     StructField("ask_size", StringType(), True),
     StructField("execution_id", StringType(), True),
     StructField("trade_size", StringType(), True)
-    # IntegerType
   ])
 
  # Creating a dataframe for all data
@@ -108,15 +107,22 @@ trade_complete_rdd = trade_complete.rdd.map(tuple)
 quotes_complete_rdd = quotes_complete.rdd.map(tuple)
 trades_and_quotes_last_rdd = trades_and_quotes_last_df.rdd.map(tuple)
 
-# Loggint last updated data:
-log_daily_raw_events.log_daily_records(trade_complete_rdd.collect(), "last_update_trade")
-log_daily_raw_events.log_daily_records(quotes_complete_rdd.collect(), "last_update_quote")
-log_daily_raw_events.log_daily_records(trades_and_quotes_last_rdd.collect(), "last_update_trades_quote")
+# Logging file
+import log_manager as log
+log.log_daily_records(trade_complete_rdd.collect(), "last_update_trade")
+log.log_daily_records(quotes_complete_rdd.collect(), "last_update_quote")
+log.log_daily_records(trades_and_quotes_last_rdd.collect(), "last_update_trades_quote")
+
 
 # Pushing last up to date data to database
+from sqlManager import *
+
+# Initiate the database
+db = Database()
+postgree_connection = db.connect()
+
 # Create Postgree table if still doesn't exist
-# sqlManager.createTable(postgree_connection, "events")
+# db.createTable(postgree_connection, "events")
 
 # Inserting raw data into events table:
-# DESCOMENTAR ESSA LINHA QUANDO MANDAR O CODIGO
-# sqlManager.insertRddIntoTable(postgree_connection, trades_and_quotes_last_rdd.collect(), "events")
+db.insertRddIntoTable(postgree_connection, trades_and_quotes_last_rdd.collect(), "events")

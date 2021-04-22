@@ -1,24 +1,27 @@
 from pyspark import SparkConf, SparkContext
+import config as cfg
 
 # Starting the spark context
 conf = SparkConf().setMaster("local").setAppName("parse_data")
 sc = SparkContext(conf = conf)
 
-# path_to_csv = 's3://trades-quotes-capstone/data/csv/2020-08-05/NYSE/part-00000-5e4ced0a-66e2-442a-b020-347d0df4df8f-c000.txt'
+# path_to_csv = cfg.s3_path_to_csv
 # Local path used for local testing
+path_to_csv = cfg.local_path_to_csv
 csv_lines = sc.textFile(path_to_csv)
 
 # Defining the CSV parser
 import data_parse_helper as dp
-rdd_csv = csv_lines.map(dp.parse_csv)#.collect()
+rdd_csv = csv_lines.map(dp.parse_csv)
 
 
-# path_to_json = 's3://trades-quotes-capstone/data/json/2020-08-05/NASDAQ/part-00000-c6c48831-3d45-4887-ba5f-82060885fc6c-c000.txt'
+# path_to_json = cfg.s3_path_to_json
 # Local path used for local testing
+path_to_json = cfg.local_path_to_json
 json_lines = sc.textFile(path_to_json)
 
 # Defining the json parser
-rdd_json = json_lines.map(dp.parse_json)#.collect()
+rdd_json = json_lines.map(dp.parse_json)
 
 
 # Joining rdd from CSV data and JSON data
@@ -27,30 +30,27 @@ rdd_combined = rdd_join.collect()
 
 
 # Sending data to Postgre Database
-import psycopg2
-import sqlManager
-import config as cfg
+from sqlManager import *
 
-hostname = cfg.HOSTNAME
-username = cfg.USERNAME
-password = cfg.PASSWORD
-database = cfg.DATABASE
-
-
-postgree_connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
+# Initiate the database
+db = Database()
+postgree_connection = db.connect()
 
 # Create Postgree table if still doesn't exist
-sqlManager.createTable(postgree_connection, "raw_events")
+# db.createTable(postgree_connection, "raw_events")
 
 # Inserting raw data into raw_events table:
-sqlManager.insertRddIntoTable(postgree_connection, rdd_combined,"raw_events")
+db.insertRddIntoTable(postgree_connection, rdd_combined,"raw_events")
 
 # Logging file
-import log_daily_raw_events
-current_date = log_daily_raw_events.current_date
-log_daily_raw_events.log_daily_records(rdd_combined, "raw")
-log_daily_raw_events.log_daily_records_s3(
-        '/Users/rafaelbaring/Documents/SpringBoard/Guided_capstone/daily_log/daily_log_' + current_date + ".txt",
+import log_manager as log
+current_date = log.current_date
+# Logging to local directory
+log.log_daily_records(rdd_combined, "raw")
+
+# Loggint to cloud storage
+log.log_daily_records_s3(
+        cfg.local_log_path + current_date + ".txt",
         'trades-quotes-capstone',
         'daily_log_' + current_date + '.txt'
         )

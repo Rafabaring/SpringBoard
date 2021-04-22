@@ -1,3 +1,5 @@
+import log_manager as log
+
 # Function used to parse CSV data
 def parse_csv(line):
     fields = line.split(',')
@@ -32,22 +34,10 @@ def parse_csv(line):
         ask_size     = '-'
         execution_id = 'NA'
         trade_size   = 'NA'
+
     # Rejected events
     else:
-        trade_dt     = '-'
-        rec_type     = 'B'
-        symbol       = '-'
-        exchange     = '-'
-        event_tm     = '-'
-        event_seq_nb = '-'
-        arrival_tm   = '-'
-        trade_pr     = '-'
-        bid_pr       = '-'
-        bid_size     = '-'
-        ask_pr       = '-'
-        ask_size     = '-'
-        execution_id = 'NA'
-        trade_size   = 'NA'
+        log.log_rejected_rows(fields)
 
     return (trade_dt,
             rec_type,
@@ -104,20 +94,7 @@ def parse_json(line):
 
     # Rejected events
     else:
-        trade_dt     = '-'
-        rec_type     = 'B'
-        symbol       = '-'
-        exchange     = '-'
-        event_tm     = '-'
-        event_seq_nb = '-'
-        arrival_tm   = '-'
-        trade_pr     = '-'
-        bid_pr       = '-'
-        bid_size     = '-'
-        ask_pr       = '-'
-        ask_size     = '-'
-        execution_id = '-'
-        trade_size   = '-'
+        log.log_rejected_rows(fields)
 
     return (trade_dt,
             rec_type,
