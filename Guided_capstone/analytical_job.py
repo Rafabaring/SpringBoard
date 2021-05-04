@@ -1,55 +1,95 @@
 from pyspark.sql import SparkSession
-spark = SparkSession.builder.getOrCreate()
+from pyspark.sql import SQLContext
 
-# Creating a view for the EOD data
-trades_and_quotes_last_df.createOrReplaceTempView("trades_and_quotes_last_df")
+import EOD_job as eod_job
+import load_data as ld
 
+import log_manager as log
 
-# Latest trade price before the quote
-latest_trade_price = spark.sql('''
-SELECT
-	tr.trade_dt,
-	MIN(tr.trade_pr) min_trade_pr
-FROM
-	trades_and_quotes_last_df tr
-LEFT JOIN
-	(SELECT *
-	 FROM
-	 	trades_and_quotes_last_df
-	 WHERE
-	 	rec_type = 'Q'
-	) qt
-ON
-	tr.symbol = qt.symbol
-	AND tr.exchange = qt.exchange
-WHERE
-	tr.rec_type = 'T'
-	AND tr.event_tm > qt.event_tm
-GROUP BY
-	tr.trade_dt
-''')
+spark = SparkSession.builder.appName("analytical_etl").getOrCreate()
 
-# Creating a view for moving average
-latest_trade_price.write.saveAsTable("latest_trade_price_tbl")
+# Creating temporary views
+eod_job.common_df.createOrReplaceTempView("tmp_trade_moving_avg")
+eod_job.common_df.createOrReplaceTempView("tmp_last_trade")
+eod_job.common_df.createOrReplaceTempView("tmp_quotes")
+
+# Querying moving average data
+mvg_avg = spark.sql("""
+    SELECT
+        trade_dt,
+        symbol,
+        exchange,
+        event_tm,
+        event_seq_nb,
+        trade_pr,
+        mean(trade_pr)
+     OVER
+         (PARTITION BY symbol, exchange ORDER BY event_tm RANGE BETWEEN INTERVAL 30 MINUTES PRECEDING AND CURRENT ROW) AS mov_avg_pr
+    FROM
+        tmp_trade_moving_avg
+            """)
 
 
+# Logging results
+log.log_daily_records(mvg_avg, "mvg_avg")
 
-# Getting the moving average
-moving_average = spark.sql('''
-SELECT
-	symbol,
-	exchange,
-	event_tm,
-	event_seq_nb,
-	bid_pr,
-	AVG(bid_pr) OVER(PARTITION BY symbol ORDER BY event_tm
-					   ROWS BETWEEN 29 PRECEDING AND CURRENT ROW) AS moving_average
-FROM
-	trades_and_quotes_last_df
-WHERE
-	rec_type = 'Q'
-''')
+# Querying last trade price
+last_trade_pr = spark.sql("""
+    SELECT
+        trade_dt,
+        symbol,
+        exchange,
+        trade_pr as last_td_pr
+    FROM
+     (
+        SELECT
+            trade_dt,
+            symbol,
+            exchange,
+            event_tm,
+            event_seq_nb,
+            trade_pr,
+            ROW_NUMBE() OVER(PARTITION BY symbol, exchange ORDER BY event_tm DESC, event_seq_nb DESC) as r_number
+        FROM
+            tmp_last_trade
+    ) a
+    WHERE
+        r_number = 1
+            """)
+
+# Logging results
+log.log_daily_records(last_trade_pr, "last_trade_pr")
 
 
-# Creating a view for moving average
-moving_average.write.saveAsTable("moving_average_tbl")
+
+# Querying quote_union
+last_trade_pr = spark.sql("""
+    SELECT
+        trade_dt,
+        symbol,
+        exchange,
+        event_tm,
+        event_seq_nb,
+        bid_pr,
+        bid_size,
+        ask_pr,
+        ask_size
+    FROM
+        quotes
+    UNION ALL
+    SELECT
+        trade_dt,
+        symbol,
+        exchange,
+        event_tm,
+        event_seq_nb,
+        bid_pr,
+        bid_size,
+        ask_pr,
+        mov_avg_pr
+    FROM
+        tmp_trade_moving_avg
+            """)
+
+# Logging results
+log.log_daily_records(last_trade_pr, "last_trade_pr")
