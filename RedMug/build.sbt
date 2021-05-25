@@ -15,9 +15,3 @@ libraryDependencies ++= Seq(
   "org.apache.kafka"  %% "kafka" % "2.1.0",
   "org.postgresql" % "postgresql" % "9.3-1102-jdbc41"
 )
-
-// Assembly strategy when run "sbt assembly" command
-//assemblyMergeStrategy in assembly := {
-//  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-//  case x => MergeStrategy.first
-//}
