@@ -11,6 +11,10 @@ object DBManager {
     conn
   }
 
+  def database_input(message: Int): String = {
+    message.toString
+  }
+
   def insertIntoPostgres(conn: Connection, input_value: String): Unit = {
       val stm = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY)
       stm.execute("INSERT INTO sensor_input VALUES ('" + LocalDateTime.now() +"', " + input_value + ")")

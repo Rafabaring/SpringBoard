@@ -15,10 +15,7 @@ object KafkaProducerConsumerSbt {
     val log_consumer_data = KafkaConsumer.KafkaConsumer("second_topic", conn)
     println("\nComplete reading from consumer in Kafka")
 
-// inserting into the database
-//    DBManager.insertIntoPostgre(conn, "100")
-
-// closing Postregre connection
+// closing Postregres connection
     DBManager.closeConnectionPostgres(conn)
 
 // storing data after reading from topic

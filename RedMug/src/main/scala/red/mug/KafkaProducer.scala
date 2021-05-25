@@ -6,6 +6,10 @@ import org.apache.kafka.clients.producer.{KafkaProducer, ProducerRecord}
 
 object KafkaProducer{
 
+  def validate_message(message: Int): String = {
+    message.toString
+  }
+
   // Producer method
   def writeToKafka(topic: String, message: String): Unit = {
     val props = new Properties()

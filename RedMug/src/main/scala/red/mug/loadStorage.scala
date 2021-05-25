@@ -9,9 +9,14 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder
 
 object loadStorage {
 
+  def check_log(log_to_store: String): Array[String] = {
+    val log_list = log_to_store.split(" ")
+    log_list
+  }
+
   def loadS3Storage(log_to_store: String): Unit = {
     val AWS_ACCESS_KEY = "XXX"
-    val AWS_SECRET_KEY = "XXX"
+    val AWS_SECRET_KEY = "YYY"
 
     val AWSCredentials = new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY)
 //    val amazonS3Client = new AmazonS3Client(AWSCredentials)
